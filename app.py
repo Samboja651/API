@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import mariadb
 import json
+import mysql.connector
 
 app = Flask(__name__)
 
@@ -9,7 +10,6 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*", "methods":["POST"]}})
 
 # MariaDB Configuration
-import mysql.connector
 db_config = {
     "host": "localhost",
     "user": "root",
@@ -23,6 +23,7 @@ try:
 except mariadb.Error as e:
     print(f"Error connecting to MariaDB: {e}")
     conn.close()
+    
 @app.route('/', methods=['GET', 'POST'])
 def index():
     return "welcome to my api"
