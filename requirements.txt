@@ -1,0 +1,5 @@
+Flask
+Gunicorn
+flask-cors
+mariadb
+mysql-connector
