@@ -23,12 +23,12 @@ try:
 except mariadb.Error as e:
     print(f"Error connecting to MariaDB: {e}")
     conn.close()
-    
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return "welcome to my api"
+    return "Welcome to Flask API connect Database"
 
-@app.route('/test', methods=['POST', 'GET'])
+@app.route('/create_record', methods=['POST', 'GET'])
 def create_record():
     try:
         data = request.get_json()
@@ -46,7 +46,7 @@ def create_record():
                 (data["patientid"], data["dateofvisit"], data["doctorname"], data["clinicalimpression"], data["diagnosis"], data["icd10code"])
             )
         conn.commit()
-        return jsonify({"message": "Record created successfully"}), 201
+        return jsonify({"message": "Patient Record created successfully"}), 201
     
     except mariadb.Error as e:
         print(f"Error executing SQL: {e}")
